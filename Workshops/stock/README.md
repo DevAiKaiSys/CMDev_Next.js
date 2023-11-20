@@ -3,3 +3,9 @@
 ```
 npx create-next-app@latest
 ```
+
+# ES7+ shortcut
+
+```
+tsrfc
+```

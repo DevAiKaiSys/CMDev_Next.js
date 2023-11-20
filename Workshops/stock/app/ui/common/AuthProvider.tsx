@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 
 type Props = {
@@ -8,9 +8,13 @@ type Props = {
 };
 
 export default function AuthProvider({ children }: Props) {
+  const path = usePathname();
   const router = useRouter();
-  router.push('/stock');
-  return null;
 
-  //   return <div>{children}</div>;
+  if (path != '/stock') {
+    // error ReferenceError: location is not defined
+    router.push('/stock');
+  }
+
+  return <div>{children}</div>;
 }

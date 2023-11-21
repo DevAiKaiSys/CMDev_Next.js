@@ -41,3 +41,9 @@ const config: Config = {
 npm run build
 npm run start
 ```
+
+# Form
+
+```
+npm install react-hook-form
+```

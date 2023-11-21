@@ -1,3 +1,5 @@
+'use client';
+
 import {
   TextField,
   InputAdornment,
@@ -12,22 +14,32 @@ import {
 import EmailIcon from '@mui/icons-material/Email';
 import PasswordIcon from '@mui/icons-material/Password';
 import router from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
+
+interface User {
+  username: string;
+  password: string;
+}
 
 type Props = {};
 
 export default function Register({}: Props) {
+  const [user, setUser] = useState<User>({ username: '', password: '' });
+
   const showForm = () => {
     return (
       <form
-      // onSubmit={handleSubmit(async (value: User) => {
-      //   const result = await dispatch(signUp(value));
-      //   if (signUp.fulfilled.match(result)) {
-      //     alert('Register successfully');
-      //   } else if (signUp.rejected.match(result)) {
-      //     alert('Register failed');
-      //   }
-      // })}
+        onSubmit={() => {
+          alert(JSON.stringify(user));
+        }}
+        // onSubmit={handleSubmit(async (value: User) => {
+        //   const result = await dispatch(signUp(value));
+        //   if (signUp.fulfilled.match(result)) {
+        //     alert('Register successfully');
+        //   } else if (signUp.rejected.match(result)) {
+        //     alert('Register failed');
+        //   }
+        // })}
       >
         {/* Username */}
         {/* <Controller
@@ -35,6 +47,10 @@ export default function Register({}: Props) {
           control={control}
           render={({ field }) => ( */}
         <TextField
+          onChange={(e) =>
+            // setUser({ username: e.target.value, password: user.password })
+            setUser({ ...user, username: e.target.value })
+          }
           // {...field}
           // error={(errors.username?.message ?? '') != ''}
           // helperText={errors.username?.message?.toString()}
@@ -61,6 +77,7 @@ export default function Register({}: Props) {
           control={control}
           render={({ field }) => ( */}
         <TextField
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
           // {...field}
           // error={(errors.password?.message ?? '') != ''}
           // helperText={errors.password?.message?.toString()}

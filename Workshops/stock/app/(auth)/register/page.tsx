@@ -20,8 +20,8 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
-import { userSelector } from '@/store/slices/userSlice';
+import { RootState, useAppDispatch } from '@/store/store';
+import { add, userSelector } from '@/store/slices/userSlice';
 
 interface User {
   username: string;
@@ -41,6 +41,7 @@ export default function Register({}: Props) {
   // const reducer = useSelector((state: any) => state.userReducer);
   // const reducer = useSelector((state: RootState) => state.userReducer);
   const reducer = useSelector(userSelector);
+  const dispatch = useAppDispatch();
 
   const {
     control,
@@ -143,7 +144,7 @@ export default function Register({}: Props) {
         <Button
           className="mt-4"
           onClick={() => {
-            // dispatch(add());
+            dispatch(add());
             router.push('/login');
           }}
           type="button"

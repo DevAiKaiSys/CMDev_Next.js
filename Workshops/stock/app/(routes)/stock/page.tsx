@@ -11,10 +11,11 @@ export default function Stock({}: Props) {
       Stock
       {/* <img src="static\img\next_login.jpg" alt="" width={180} height={35} /> */}
       <Image
-        src="/static/img/next_login.jpg"
+        // src="https://images.pexels.com/photos/17961718/pexels-photo-17961718.jpeg?auto=compress&cs=tinysrgb&w=300&lazy=load"
+        src="https://www.codemobiles.com/biz/images/codemobiles_logo.svg?ref=10"
         alt=""
-        width={180}
-        height={35}
+        width={400}
+        height={250}
         style={{ objectFit: 'contain' }}
       />
     </Box>

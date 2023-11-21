@@ -21,7 +21,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { RootState, useAppDispatch } from '@/store/store';
-import { add, userSelector } from '@/store/slices/userSlice';
+import { add, signUp, userSelector } from '@/store/slices/userSlice';
 
 interface User {
   username: string;
@@ -59,13 +59,13 @@ export default function Register({}: Props) {
         //   alert(JSON.stringify(user));
         // }}
         onSubmit={handleSubmit(async (value: User) => {
-          alert(JSON.stringify(value));
-          // const result = await dispatch(signUp(value));
-          // if (signUp.fulfilled.match(result)) {
-          //   alert('Register successfully');
-          // } else if (signUp.rejected.match(result)) {
-          //   alert('Register failed');
-          // }
+          // alert(JSON.stringify(value));
+          const result = await dispatch(signUp(value));
+          if (signUp.fulfilled.match(result)) {
+            alert('Register successfully');
+          } else if (signUp.rejected.match(result)) {
+            alert('Register failed');
+          }
         })}
       >
         {/* Username */}

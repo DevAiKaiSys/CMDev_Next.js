@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import * as serverService from '@/src/services/serverService';
+import * as serverService from '@/services/serverService';
 
 interface SignAction {
   username: string;

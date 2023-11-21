@@ -19,6 +19,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/store/store';
 import { useSelector } from 'react-redux';
+import { userSelector } from '@/store/slices/userSlice';
 // import { RootState, useAppDispatch } from '@/src/store/store';
 
 interface User {
@@ -36,7 +37,8 @@ export default function Login({}: Props) {
     password: Yup.string().required('Password is required').trim(),
   });
 
-  const reducer = useSelector((state: any) => state.userReducer);
+  // const reducer = useSelector((state: any) => state.userReducer);
+  const reducer = useSelector(userSelector);
   // const dispatch = useAppDispatch();
 
   const {

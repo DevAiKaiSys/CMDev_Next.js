@@ -42,8 +42,9 @@ npm run build
 npm run start
 ```
 
-# Form
+# Form & Validation
 
 ```
 npm install react-hook-form
+npm install @hookform/resolvers yup
 ```

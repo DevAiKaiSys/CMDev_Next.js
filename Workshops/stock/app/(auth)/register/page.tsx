@@ -16,6 +16,8 @@ import PasswordIcon from '@mui/icons-material/Password';
 import router from 'next/router';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 interface User {
   username: string;
@@ -27,14 +29,18 @@ type Props = {};
 export default function Register({}: Props) {
   // const [user, setUser] = useState<User>({ username: '', password: '' });
   const initialValue: User = { username: 'admin', password: '' };
+  const formValidateSchema = Yup.object().shape({
+    username: Yup.string().required('Username is required').trim(),
+    password: Yup.string().required('Password is required').trim(),
+  });
 
   const {
     control,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
   } = useForm<User>({
     defaultValues: initialValue,
-    // resolver: yupResolver(formValidateSchema),
+    resolver: yupResolver(formValidateSchema),
   });
 
   const showForm = () => {
@@ -64,8 +70,8 @@ export default function Register({}: Props) {
               //   setUser({ ...user, username: e.target.value })
               // }
               {...field}
-              // error={(errors.username?.message ?? '') != ''}
-              // helperText={errors.username?.message?.toString()}
+              error={(errors.username?.message ?? '') != ''}
+              helperText={errors.username?.message?.toString()}
               variant="outlined"
               margin="normal"
               fullWidth
@@ -91,8 +97,8 @@ export default function Register({}: Props) {
             <TextField
               // onChange={(e) => setUser({ ...user, password: e.target.value })}
               {...field}
-              // error={(errors.password?.message ?? '') != ''}
-              // helperText={errors.password?.message?.toString()}
+              error={(errors.password?.message ?? '') != ''}
+              helperText={errors.password?.message?.toString()}
               variant="outlined"
               margin="normal"
               type="password"

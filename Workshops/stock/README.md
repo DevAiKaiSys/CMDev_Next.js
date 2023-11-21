@@ -34,3 +34,10 @@ const config: Config = {
   },
 };
 ```
+
+## Test Production
+
+```
+npm run build
+npm run start
+```

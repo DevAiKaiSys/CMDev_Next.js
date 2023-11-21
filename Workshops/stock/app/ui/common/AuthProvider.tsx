@@ -11,10 +11,10 @@ export default function AuthProvider({ children }: Props) {
   const path = usePathname();
   const router = useRouter();
 
-  if (path == '/') {
-    // error ReferenceError: location is not defined
-    router.push('/stock');
-  }
+  // if (path == '/') {
+  //   // error ReferenceError: location is not defined
+  //   router.push('/stock');
+  // }
 
   return <div>{children}</div>;
 }

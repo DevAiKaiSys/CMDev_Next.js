@@ -17,9 +17,9 @@ import { Controller, useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
-// import { useSelector } from 'react-redux';
+import { useAppDispatch } from '@/store/store';
+import { useSelector } from 'react-redux';
 // import { RootState, useAppDispatch } from '@/src/store/store';
-// import { add, signIn, userSelector } from '@/src/store/slices/userSlice';
 
 interface User {
   username: string;
@@ -36,7 +36,7 @@ export default function Login({}: Props) {
     password: Yup.string().required('Password is required').trim(),
   });
 
-  // const reducer = useSelector(userSelector);
+  const reducer = useSelector((state: any) => state.userReducer);
   // const dispatch = useAppDispatch();
 
   const {
@@ -152,8 +152,7 @@ export default function Login({}: Props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Login
-            {/* ({reducer.count}) */}
+            Login ({reducer.count})
           </Typography>
           {showForm()}
         </CardContent>

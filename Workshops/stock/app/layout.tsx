@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import AuthProvider from './ui/common/AuthProvider';
 import ThemeRegistry from './ui/ThemeRegistry/ThemeRegistry';
+import ReduxProvider from './ui/common/ReduxProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,9 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AuthProvider>
-          <ThemeRegistry>{children}</ThemeRegistry>
-        </AuthProvider>
+        <ReduxProvider>
+          <AuthProvider>
+            <ThemeRegistry>{children}</ThemeRegistry>
+          </AuthProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

@@ -48,3 +48,12 @@ npm run start
 npm install react-hook-form
 npm install @hookform/resolvers yup
 ```
+
+# State Management
+
+[Redux](https://redux.js.org/introduction/installation)
+
+```
+npm install @reduxjs/toolkit
+npm install react-redux
+```

@@ -1,5 +1,23 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
+import * as serverService from '@/src/services/serverService';
+
+interface SignAction {
+  username: string;
+  password: string;
+}
+
+// const register = async (credential: SignAction) => {
+//   const response = await serverService.signUp(credential);
+//   return response;
+// };
+export const signUp = createAsyncThunk(
+  'user/signup',
+  async (credential: SignAction) => {
+    const response = await serverService.signUp(credential);
+    return response;
+  }
+);
 
 const userSlice = createSlice({
   name: 'user',
@@ -8,6 +26,11 @@ const userSlice = createSlice({
     add: (state) => {
       state.count++;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(signUp.fulfilled, (state, action) => {
+      state.count++;
+    });
   },
 });
 

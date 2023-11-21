@@ -57,3 +57,9 @@ npm install @hookform/resolvers yup
 npm install @reduxjs/toolkit
 npm install react-redux
 ```
+
+# REST API
+
+```
+npm install axios
+```

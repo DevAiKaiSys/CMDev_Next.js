@@ -55,11 +55,9 @@ export default function Login({}: Props) {
         onSubmit={handleSubmit(async (value: User) => {
           const result = await dispatch(signIn(value));
           if (signIn.fulfilled.match(result)) {
-            alert('Login successfully');
+            // alert('Login successfully');
+            router.push('/stock');
           }
-          // if (signIn.fulfilled.match(result)) {
-          //   router.push('/stock');
-          // }
         })}
       >
         {/* Username */}

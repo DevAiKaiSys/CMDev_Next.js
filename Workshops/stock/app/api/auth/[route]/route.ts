@@ -83,6 +83,7 @@ async function signin(body: {
       path: '/',
     });
 
+    // console.log('Debug: ' + JSON.stringify(response.data));
     return NextResponse.json(response.data);
   } catch (error: any) {
     return NextResponse.json({ result: 'nok' });

@@ -3,6 +3,7 @@ import { RootState } from '../store';
 import * as serverService from '@/services/serverService';
 import httpClient from '@/utils/httpClient';
 import { AxiosRequestConfig } from 'axios';
+import { UserData } from '@/models/user.model';
 
 interface UserState {
   username: string;
@@ -12,7 +13,7 @@ interface UserState {
   isAuthenticated: boolean;
   isAuthenticating: boolean;
   count: number;
-  // user?: UserData;
+  user?: UserData;
 }
 
 const initialState: UserState = {
@@ -143,7 +144,7 @@ const userSlice = createSlice({
       // if (action.payload && action.payload.user && action.payload.user.token) {
       if (action.payload?.user?.token) {
         state.accessToken = action.payload.user.token;
-        // state.user = action.payload.user;
+        state.user = action.payload.user;
         state.isAuthenticated = true;
       }
     });

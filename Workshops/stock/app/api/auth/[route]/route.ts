@@ -30,20 +30,21 @@ export async function GET(
 }
 
 // POST
-// export async function POST(
-//   request: NextRequest,
-//   context: {
-//     params: {
-//       route: string;
-//     };
-//   }
-// ): Promise<any> {
-//   const route = context.params.route;
-//   const body = await request.json();
-//   if (route === 'signin') {
-//     return signin(body);
-//   }
-// }
+export async function POST(
+  request: NextRequest,
+  context: {
+    params: {
+      route: string;
+    };
+  }
+): Promise<any> {
+  const route = context.params.route;
+  const body = await request.json();
+  if (route === 'signin') {
+    return NextResponse.json(body);
+    // return signin(body);
+  }
+}
 
 // async function getSession(req: NextRequest) {
 //   try {

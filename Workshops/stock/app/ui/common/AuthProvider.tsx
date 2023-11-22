@@ -2,9 +2,11 @@
 
 import { getSession, userSelector } from '@/store/slices/userSlice';
 import { store } from '@/store/store';
+import { Box } from '@mui/material';
 import { usePathname, useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import Loading from './Loading';
 
 type Props = {
   children: React.ReactNode;
@@ -43,23 +45,23 @@ export default function AuthProvider({ children }: Props) {
   // is fetching session (eg. show spinnner)
   // if (isAuthenticating) {
   if (userReducer.isAuthenticating) {
-    return null;
+    return <Loading />;
   }
   // If user is not logged in, return login component
   if (path !== '/login' && path !== '/register') {
     // if (!isAuthenticated) {
     if (!userReducer.isAuthenticated) {
       router.push('/login');
-      return null;
+      return <Loading />;
     } else if (path == '/') {
       router.push('/stock'); // default page after login when call root path
-      return null;
+      return <Loading />;
     }
   } else {
     // if (isAuthenticated) {
     if (userReducer.isAuthenticated) {
       router.push('/stock'); // default page after login
-      return null;
+      return <Loading />;
     }
   }
   return <div>{children}</div>;

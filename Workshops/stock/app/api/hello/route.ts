@@ -7,12 +7,6 @@
 
 import { NextResponse } from 'next/server';
 
-export async function GET(context: {
-  params: {
-    y: string;
-  };
-}): Promise<any> {
-  const route = context.params.y;
-
-  return NextResponse.json({ route });
+export async function GET(): Promise<any> {
+  return NextResponse.json({ result: 'ok' });
 }

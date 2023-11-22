@@ -61,11 +61,11 @@ export default function Register({}: Props) {
         onSubmit={handleSubmit(async (value: User) => {
           // alert(JSON.stringify(value));
           const result = await dispatch(signUp(value));
-          // if (signUp.fulfilled.match(result)) {
-          //   alert('Register successfully');
-          // } else if (signUp.rejected.match(result)) {
-          //   alert('Register failed');
-          // }
+          if (signUp.fulfilled.match(result)) {
+            alert('Register successfully');
+          } else if (signUp.rejected.match(result)) {
+            alert('Register failed');
+          }
         })}
       >
         {/* Username */}
@@ -126,9 +126,9 @@ export default function Register({}: Props) {
           )}
         />
 
-        {/* {reducer.status == 'failed' && (
+        {reducer.status == 'failed' && (
           <Alert severity="error">Register failed</Alert>
-        )} */}
+        )}
 
         <Button
           className="mt-8"

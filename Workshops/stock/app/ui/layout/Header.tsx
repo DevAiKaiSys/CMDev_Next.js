@@ -14,6 +14,8 @@ import { Badge, Menu, MenuItem } from '@mui/material';
 // import { useAppDispatch } from '@/src/store/store';
 // import { signOut } from '@/src/store/slices/userSlice';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/store/store';
+import { signOut } from '@/store/slices/userSlice';
 
 const drawerWidth = 240;
 interface AppBarProps extends MuiAppBarProps {
@@ -42,7 +44,7 @@ type Props = { handleDrawerOpen: any; open: boolean };
 
 const Header = ({ handleDrawerOpen, open }: Props) => {
   const [showProfileMenu, setShowProfileMenu] = React.useState(false);
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const handleClose = () => {
     setShowProfileMenu(false);
@@ -118,11 +120,11 @@ const Header = ({ handleDrawerOpen, open }: Props) => {
             onClose={handleClose}
           >
             <MenuItem
-            // onClick={async () => {
-            //   const response = await dispatch(signOut());
-            //   if (response.meta.requestStatus === 'fulfilled')
-            //     router.push('/login');
-            // }}
+              onClick={async () => {
+                const response = await dispatch(signOut());
+                if (response.meta.requestStatus === 'fulfilled')
+                  router.push('/login');
+              }}
             >
               Logout
             </MenuItem>

@@ -40,6 +40,29 @@ export const signUp = createAsyncThunk(
   }
 );
 
+export const signIn = createAsyncThunk(
+  'user/signin',
+  async (credential: SignAction) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const response = await serverService.signIn(credential);
+
+    // if (response.result != "ok") {
+    //   throw new Error("login failed");
+    // }
+
+    // // set access token
+    // httpClient.interceptors.request.use((config?: AxiosRequestConfig | any) => {
+    //   if (config && config.headers) {
+    //     config.headers["Authorization"] = `Bearer ${response.token}`;
+    //   }
+
+    //   return config;
+    // });
+
+    return response;
+  }
+);
+
 const userSlice = createSlice({
   name: 'user',
   // initialState: initialState,
@@ -50,6 +73,7 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // Register
     builder.addCase(signUp.pending, (state) => {
       state.status = 'fetching';
     });
@@ -61,6 +85,28 @@ const userSlice = createSlice({
 
     builder.addCase(signUp.rejected, (state) => {
       state.status = 'failed';
+    });
+
+    // Login
+    builder.addCase(signIn.pending, (state) => {
+      state.status = 'fetching';
+      // state.isAuthenticating = true;
+    });
+
+    builder.addCase(signIn.fulfilled, (state, action) => {
+      state.count++;
+      state.status = 'success';
+      // state.accessToken = action.payload.token;
+      // state.isAuthenticated = true;
+      // state.isAuthenticating = false;
+      // state.username = action.payload.username;
+    });
+
+    builder.addCase(signIn.rejected, (state) => {
+      state.status = 'failed';
+      // state.accessToken = "";
+      // state.isAuthenticated = false;
+      // state.isAuthenticating = false;
     });
   },
 });

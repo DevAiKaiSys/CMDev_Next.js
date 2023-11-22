@@ -19,7 +19,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/store/store';
 import { useSelector } from 'react-redux';
-import { add, userSelector } from '@/store/slices/userSlice';
+import { add, signIn, userSelector } from '@/store/slices/userSlice';
 
 interface User {
   username: string;
@@ -53,7 +53,10 @@ export default function Login({}: Props) {
     return (
       <form
         onSubmit={handleSubmit(async (value: User) => {
-          // const result = await dispatch(signIn(value));
+          const result = await dispatch(signIn(value));
+          if (signIn.fulfilled.match(result)) {
+            alert('Login successfully');
+          }
           // if (signIn.fulfilled.match(result)) {
           //   router.push('/stock');
           // }
@@ -112,9 +115,9 @@ export default function Login({}: Props) {
           )}
         />
 
-        {/* {reducer.status == 'failed' && (
+        {reducer.status == 'failed' && (
           <Alert severity="error">Login failed</Alert>
-        )} */}
+        )}
 
         <Button
           className="mt-8"
@@ -122,7 +125,7 @@ export default function Login({}: Props) {
           fullWidth
           variant="contained"
           color="primary"
-          // disabled={reducer.status == 'fetching'}
+          disabled={reducer.status == 'fetching'}
         >
           Login
         </Button>

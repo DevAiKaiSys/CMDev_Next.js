@@ -41,8 +41,8 @@ export async function POST(
   const route = context.params.route;
   const body = await request.json();
   if (route === 'signin') {
-    return NextResponse.json(body);
-    // return signin(body);
+    // return NextResponse.json(body);
+    return signin(body);
   }
 }
 
@@ -69,25 +69,25 @@ export async function POST(
 //   return NextResponse.json({ result: 'ok' });
 // }
 
-// async function signin(body: {
-//   username: string;
-//   password: string;
-// }): Promise<any> {
-//   try {
-//     const response = await httpClient.post(`/authen/login`, body);
-//     const { token } = response.data;
-//     cookies().set(ACCESS_TOKEN_KEY, token, {
-//       httpOnly: true,
-//       secure: process.env.NODE_ENV !== 'development',
-//       sameSite: 'strict',
-//       path: '/',
-//     });
+async function signin(body: {
+  username: string;
+  password: string;
+}): Promise<any> {
+  try {
+    const response = await httpClient.post(`/authen/login`, body);
+    const { token } = response.data;
+    cookies().set(ACCESS_TOKEN_KEY, token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== 'development',
+      sameSite: 'strict',
+      path: '/',
+    });
 
-//     return NextResponse.json(response.data);
-//   } catch (error: any) {
-//     return NextResponse.json({ result: 'nok' });
-//   }
-// }
+    return NextResponse.json(response.data);
+  } catch (error: any) {
+    return NextResponse.json({ result: 'nok' });
+  }
+}
 
 // export async function PUT(request: Request) {}
 // export async function DELETE(request: Request) {}

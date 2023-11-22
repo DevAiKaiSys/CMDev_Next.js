@@ -136,6 +136,17 @@ const userSlice = createSlice({
       state.isAuthenticated = false;
       state.isAuthenticating = false;
     });
+
+    // Get Session
+    builder.addCase(getSession.fulfilled, (state, action) => {
+      state.isAuthenticating = false;
+      // if (action.payload && action.payload.user && action.payload.user.token) {
+      if (action.payload?.user?.token) {
+        state.accessToken = action.payload.user.token;
+        // state.user = action.payload.user;
+        state.isAuthenticated = true;
+      }
+    });
   },
 });
 

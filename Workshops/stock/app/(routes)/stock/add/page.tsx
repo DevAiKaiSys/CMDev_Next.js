@@ -12,6 +12,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ProductData } from '@/models/product.model';
+import { addProduct } from '@/store/slices/productSlice';
 
 const formValidateSchema = Yup.object().shape({
   name: Yup.string().required('Name is required').trim(),
@@ -36,16 +37,14 @@ export default function StockCreate() {
   });
 
   const onSubmit = async (values: ProductData) => {
-    alert(JSON.stringify(values));
+    // alert(JSON.stringify(values));
+    const result = await dispatch(addProduct(values));
+    if (result.meta.requestStatus == 'fulfilled') {
+      router.push('/stock');
+    } else {
+      alert('Add failed');
+    }
   };
-  // const onSubmit = async (values: ProductData) => {
-  //   const result = await dispatch(addProduct(values));
-  //   if (result.meta.requestStatus == 'fulfilled') {
-  //     router.push('/stock');
-  //   } else {
-  //     alert('Add failed');
-  //   }
-  // };
 
   const watchPreviewImage = watch('file_obj');
 

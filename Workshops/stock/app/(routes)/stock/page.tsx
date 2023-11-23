@@ -22,6 +22,7 @@ import { NumericFormat } from 'react-number-format';
 import dayjs from 'dayjs';
 import { Add, Delete, Edit } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
+import { userSelector } from '@/store/slices/userSlice';
 
 // const columns: GridColDef[] = [
 //   { field: 'id', headerName: 'ID', width: 90 },
@@ -133,6 +134,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Stock() {
   // const productReducer = useSelector((state: any) => state.productReducer);
+  const userReducer = useSelector(userSelector);
   const productReducer = useSelector(productSelector);
   const dispatch = useAppDispatch();
   const router = useRouter();
@@ -219,14 +221,15 @@ export default function Stock() {
   ];
 
   useEffect(() => {
-    return () => {
-      loadData();
-    };
-  }, [dispatch]);
-
-  const loadData = () => {
-    dispatch(getProducts());
-  };
+    if (!userReducer.isAuthenticating) {
+      dispatch(getProducts());
+    }
+    // return () => {
+    //   if (userReducer.isAuthenticated) {
+    //     dispatch(getProducts());
+    //   }
+    // };
+  }, [dispatch, userReducer.isAuthenticating]);
 
   const CustomToolbar: React.FunctionComponent<{
     setFilterButtonEl: React.Dispatch<

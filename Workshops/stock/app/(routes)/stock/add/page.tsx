@@ -47,20 +47,20 @@ export default function StockCreate() {
   //   }
   // };
 
-  // const watchPreviewImage = watch('file_obj');
+  const watchPreviewImage = watch('file_obj');
 
   const showPreviewImage = () => {
-    // if (watchPreviewImage) {
-    return (
-      <Image
-        alt=""
-        src="/static/img/cm_logo.png"
-        // src={watchPreviewImage.toString()}
-        width={100}
-        height={100}
-      />
-    );
-    // }
+    if (watchPreviewImage) {
+      return (
+        <Image
+          alt=""
+          // src="/static/img/cm_logo.png"
+          src={watchPreviewImage.toString()}
+          width={100}
+          height={100}
+        />
+      );
+    }
   };
 
   return (
@@ -132,11 +132,11 @@ export default function StockCreate() {
             className="mt-4"
             type="file"
             fullWidth
-            // onChange={(e: React.ChangeEvent<any>) => {
-            //   e.preventDefault();
-            //   setValue('file', e.target.files[0]); // for upload
-            //   setValue('file_obj', URL.createObjectURL(e.target.files[0])); // for preview image
-            // }}
+            onChange={(e: React.ChangeEvent<any>) => {
+              // e.preventDefault();
+              setValue('file', e.target.files[0]); // for upload
+              setValue('file_obj', URL.createObjectURL(e.target.files[0])); // for preview image
+            }}
           />
         </CardContent>
         <CardActions>

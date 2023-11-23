@@ -13,27 +13,27 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ProductData } from '@/models/product.model';
 
-// const formValidateSchema = Yup.object().shape({
-//   name: Yup.string().required('Name is required').trim(),
-//   price: Yup.number().min(100, 'Number must be greater than 100'),
-//   stock: Yup.number().min(100, 'Number must be greater than 100'),
-// });
+const formValidateSchema = Yup.object().shape({
+  name: Yup.string().required('Name is required').trim(),
+  price: Yup.number().min(100, 'Number must be greater than 100'),
+  stock: Yup.number().min(100, 'Number must be greater than 100'),
+});
 
 export default function StockCreate() {
   const dispatch = useAppDispatch();
   const router = useRouter();
-  // const initialValue: ProductData = { name: '', price: 1500, stock: 9999 };
-  // const {
-  //   control,
-  //   handleSubmit,
-  //   setValue,
-  //   watch,
-  //   formState: { errors },
-  // } = useForm<ProductData>({
-  //   defaultValues: initialValue,
-  //   //@ts-ignore
-  //   resolver: yupResolver(formValidateSchema),
-  // });
+  const initialValue: ProductData = { name: '', price: 1500, stock: 9999 };
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<ProductData>({
+    defaultValues: initialValue,
+    //@ts-ignore
+    resolver: yupResolver(formValidateSchema),
+  });
 
   const onSubmit = async (values: ProductData) => {
     alert(JSON.stringify(values));
@@ -65,9 +65,9 @@ export default function StockCreate() {
 
   return (
     <form
-      // noValidate
-      onSubmit={() => {}}
-      // onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      // onSubmit={() => {}}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <Card>
         <CardContent className="p-8">
@@ -75,56 +75,56 @@ export default function StockCreate() {
             Create Product
           </Typography>
 
-          {/* <Controller
+          <Controller
             control={control}
             name="name"
-            render={({ field }) => ( */}
-          <TextField
-            // {...field}
-            label="Name"
-            // error={Boolean(errors.name?.message)}
-            // helperText={errors.name?.message?.toString()}
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            autoFocus
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Name"
+                error={Boolean(errors.name?.message)}
+                helperText={errors.name?.message?.toString()}
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                autoFocus
+              />
+            )}
           />
-          {/* )}
-          /> */}
 
-          {/* <Controller
+          <Controller
             control={control}
             name="price"
-            render={({ field }) => ( */}
-          <TextField
-            // {...field}
-            label="Price"
-            // error={Boolean(errors.price?.message)}
-            // helperText={errors.price?.message?.toString()}
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            autoFocus
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Price"
+                error={Boolean(errors.price?.message)}
+                helperText={errors.price?.message?.toString()}
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                autoFocus
+              />
+            )}
           />
-          {/* )}
-          /> */}
 
-          {/* <Controller
+          <Controller
             control={control}
             name="stock"
-            render={({ field }) => ( */}
-          <TextField
-            // {...field}
-            label="Stock"
-            // error={Boolean(errors.stock?.message)}
-            // helperText={errors.stock?.message?.toString()}
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            autoFocus
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Stock"
+                error={Boolean(errors.stock?.message)}
+                helperText={errors.stock?.message?.toString()}
+                variant="outlined"
+                margin="normal"
+                fullWidth
+                autoFocus
+              />
+            )}
           />
-          {/* )}
-          /> */}
 
           <Box>{showPreviewImage()}</Box>
 

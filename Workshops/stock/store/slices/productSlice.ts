@@ -46,22 +46,22 @@ export const addProduct = createAsyncThunk(
 //   }
 // );
 
-// export const editProduct = createAsyncThunk(
-//   'product/addProduct',
-//   async (values: ProductData) => {
-//     let data = new FormData();
-//     data.append('id', String(values.id));
-//     data.append('name', values.name);
-//     data.append('price', String(values.price));
-//     data.append('stock', String(values.stock));
+export const editProduct = createAsyncThunk(
+  'product/addProduct',
+  async (values: ProductData) => {
+    let data = new FormData();
+    data.append('id', String(values.id));
+    data.append('name', values.name);
+    data.append('price', String(values.price));
+    data.append('stock', String(values.stock));
 
-//     if (values.file) {
-//       data.append('image', values.file);
-//     }
-//     const response = serverService.editProduct(data);
-//     return response;
-//   }
-// );
+    if (values.file) {
+      data.append('image', values.file);
+    }
+    const response = serverService.editProduct(data);
+    return response;
+  }
+);
 
 const productSlice = createSlice({
   name: 'product',

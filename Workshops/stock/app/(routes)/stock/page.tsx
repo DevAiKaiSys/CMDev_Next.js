@@ -1,14 +1,44 @@
 'use client';
 
 import * as React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import {
+  DataGrid,
+  GridColDef,
+  GridRenderCellParams,
+  GridValueGetterParams,
+} from '@mui/x-data-grid';
 import { useSelector } from 'react-redux';
 import { getProducts, productSelector } from '@/store/slices/productSlice';
 import { useAppDispatch } from '@/store/store';
 import { useEffect } from 'react';
+import Image from 'next/image';
+import { productImageURL } from '@/utils/commonUtil';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
+  {
+    field: 'image',
+    headerName: 'Image',
+    width: 70,
+    renderCell: ({ value }: GridRenderCellParams<String>) => (
+      // <b>{value}</b>
+      // <Zoom>
+      <Image
+        key={value}
+        height={500}
+        width={500}
+        alt="product image"
+        src={productImageURL(value)}
+        style={{
+          width: 70,
+          height: 70,
+          borderRadius: '5%',
+          objectFit: 'cover',
+        }}
+      />
+      // </Zoom>
+    ),
+  },
   { field: 'name', headerName: 'Name', width: 130 },
   { field: 'price', headerName: 'Price', width: 130 },
   { field: 'stock', headerName: 'Stock', width: 130 },

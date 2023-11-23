@@ -17,8 +17,9 @@ const initialState: ProductState = {
 // };
 export const getProducts = createAsyncThunk(
   'product/getProduct',
-  async (keyword?: string) => {
+  async (keyword?: string | undefined) => {
     const response = await serverService.getProducts(keyword);
+    console.log(response);
     return response;
   }
 );
@@ -74,4 +75,4 @@ const productSlice = createSlice({
 });
 
 export default productSlice.reducer;
-// export const productSelector = (state: RootState) => state.productReducer;
+export const productSelector = (state: RootState) => state.productReducer;

@@ -5,6 +5,8 @@ import {
   DataGrid,
   GridColDef,
   GridRenderCellParams,
+  GridToolbarContainer,
+  GridToolbarFilterButton,
   GridValueGetterParams,
 } from '@mui/x-data-grid';
 import { useSelector } from 'react-redux';
@@ -15,9 +17,10 @@ import Image from 'next/image';
 import { productImageURL } from '@/utils/commonUtil';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
-import { Typography } from '@mui/material';
+import { Fab, Link, Typography } from '@mui/material';
 import { NumericFormat } from 'react-number-format';
 import dayjs from 'dayjs';
+import { Add } from '@mui/icons-material';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -116,6 +119,29 @@ export default function Stock() {
     dispatch(getProducts());
   };
 
+  const CustomToolbar: React.FunctionComponent<{
+    setFilterButtonEl: React.Dispatch<
+      React.SetStateAction<HTMLButtonElement | null>
+    >;
+  }> = ({ setFilterButtonEl }) => (
+    <GridToolbarContainer>
+      <GridToolbarFilterButton ref={setFilterButtonEl} />
+      <Link href="/stock/add">
+        <Fab
+          color="primary"
+          aria-label="add"
+          sx={{
+            position: 'absolute',
+            top: 10,
+            right: 10,
+          }}
+        >
+          <Add />
+        </Fab>
+      </Link>
+    </GridToolbarContainer>
+  );
+
   return (
     <div style={{ height: 400, width: '100%' }}>
       <DataGrid
@@ -129,6 +155,9 @@ export default function Stock() {
         }}
         pageSizeOptions={[5, 10]}
         // checkboxSelection
+        slots={{
+          toolbar: CustomToolbar,
+        }}
       />
     </div>
   );

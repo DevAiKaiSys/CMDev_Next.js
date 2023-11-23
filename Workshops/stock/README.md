@@ -63,3 +63,15 @@ npm install react-redux
 ```
 npm install axios
 ```
+
+# Image Zoom
+
+```
+npm install --save react-medium-image-zoom
+```
+
+# Number Format
+
+```
+npm install react-number-format
+```

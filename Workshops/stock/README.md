@@ -70,8 +70,16 @@ npm install axios
 npm install --save react-medium-image-zoom
 ```
 
-# Number Format
+# Format
+
+## Number
 
 ```
 npm install react-number-format
+```
+
+## Date
+
+```
+npm install dayjs
 ```

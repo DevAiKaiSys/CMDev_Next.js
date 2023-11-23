@@ -17,10 +17,10 @@ import Image from 'next/image';
 import { productImageURL } from '@/utils/commonUtil';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
-import { Fab, Link, Typography } from '@mui/material';
+import { Fab, IconButton, Link, Stack, Typography } from '@mui/material';
 import { NumericFormat } from 'react-number-format';
 import dayjs from 'dayjs';
-import { Add } from '@mui/icons-material';
+import { Add, Delete, Edit } from '@mui/icons-material';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -73,6 +73,32 @@ const columns: GridColDef[] = [
       <Typography variant="body1">
         {dayjs(value).format('DD/MM/YYYY HH:mm')}
       </Typography>
+    ),
+  },
+  {
+    headerName: 'ACTION',
+    field: '.',
+    width: 120,
+    renderCell: ({ row }: GridRenderCellParams<any>) => (
+      <Stack direction="row">
+        <IconButton
+          aria-label="edit"
+          size="large"
+          // onClick={() => router.push(`/stock/edit?id=${row.id}`)}
+        >
+          <Edit fontSize="inherit" />
+        </IconButton>
+        <IconButton
+          aria-label="delete"
+          size="large"
+          // onClick={() => {
+          //   setSelectedProduct(row);
+          //   setOpenDialog(true);
+          // }}
+        >
+          <Delete fontSize="inherit" />
+        </IconButton>
+      </Stack>
     ),
   },
   // {

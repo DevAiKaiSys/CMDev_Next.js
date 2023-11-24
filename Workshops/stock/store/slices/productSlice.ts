@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RootState, useAppDispatch } from '../store';
+import { RootState, store, useAppDispatch } from '../store';
 import { ProductData } from '@/models/product.model';
 import * as serverService from '@/services/serverService';
 
@@ -19,7 +19,7 @@ export const getProducts = createAsyncThunk(
   'product/getProduct',
   async (keyword?: string | undefined) => {
     const response = await serverService.getProducts(keyword);
-    console.log(response);
+    // console.log(response);
     return response;
   }
 );
@@ -39,12 +39,14 @@ export const addProduct = createAsyncThunk(
   }
 );
 
-// export const deleteProduct = createAsyncThunk(
-//   'product/delete',
-//   async (id: string) => {
-//     await serverService.deleteProduct(id);
-//   }
-// );
+export const deleteProduct = createAsyncThunk(
+  'product/delete',
+  async (id: string) => {
+    await serverService.deleteProduct(id);
+    // state.dispatch(getProducts());
+    store.dispatch(getProducts());
+  }
+);
 
 export const editProduct = createAsyncThunk(
   'product/addProduct',

@@ -100,3 +100,15 @@ npm install dayjs
 ```
 npm install --save chart.js react-chartjs-2
 ```
+
+# Production
+
+## standalone
+
+```js
+// next.config.js
+const nextConfig = {
+  output: "standalone",
+  ...
+}
+```

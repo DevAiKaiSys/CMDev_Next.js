@@ -83,3 +83,11 @@ npm install react-number-format
 ```
 npm install dayjs
 ```
+
+# Charts
+
+## [react-chartjs-2](https://react-chartjs-2.js.org/)
+
+```
+npm install --save chart.js react-chartjs-2
+```

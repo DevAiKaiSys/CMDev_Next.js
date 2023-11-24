@@ -1,7 +1,7 @@
 'use client';
 
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { Suspense } from 'react';
 import Header from '../ui/layout/Header';
 import Sidebar from '../ui/layout/SideBar';
 import DrawerHeader from '../ui/layout/DrawerHeader';
@@ -31,6 +31,7 @@ export default function DefaultLayout({ children }: Props) {
         }}
       >
         <DrawerHeader />
+        {/* <Suspense fallback={<span>1234</span>}>{children}</Suspense> */}
         {children}
       </Box>
     </Box>

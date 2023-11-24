@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-type Props = {}
+type Props = {};
 
-export default function AboutUs({}: Props) {
-  return (
-    <div>AboutUs</div>
-  )
+export default async function AboutUs({}: Props) {
+  await new Promise((resolve, reject) => {
+    setTimeout(resolve, 3000);
+  });
+  return <div>AboutUs</div>;
 }

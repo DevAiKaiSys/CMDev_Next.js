@@ -112,3 +112,40 @@ const nextConfig = {
   ...
 }
 ```
+
+### fix image
+
+copy folder public to .next/standalone
+
+## port config
+
+set .env.production to new port
+
+```
+npm run build
+```
+
+### use yarn
+
+```
+yarn start -p 8081
+```
+
+### use npm
+
+```json
+// package.json
+"scripts": {
+    "start": "next start -p 8081",
+    ...
+  },
+```
+
+#### standalone
+
+```
+PORT=8081 node server.js
+
+// in windows
+SET PORT=8081 && node server.js 
+```

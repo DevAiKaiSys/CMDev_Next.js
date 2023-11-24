@@ -30,24 +30,24 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - api (API routes)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     */
-    // '/((?!api|_next/static|_next/image|favicon.ico).*)', // image fail
-    '/((?!api|static|.*\\..*|_next).*)',
-  ],
   // matcher: [
-  //   '/',
-  //   '/login/:path*',
-  //   '/register/:path*',
-  //   '/stock/:path*',
-  //   '/report/:path*',
-  //   '/aboutus/:path*',
-  //   '/shop/:path*',
+  //   /*
+  //    * Match all request paths except for the ones starting with:
+  //    * - api (API routes)
+  //    * - _next/static (static files)
+  //    * - _next/image (image optimization files)
+  //    * - favicon.ico (favicon file)
+  //    */
+  //   // '/((?!api|_next/static|_next/image|favicon.ico).*)', // image fail
+  //   '/((?!api|static|.*\\..*|_next).*)',
   // ],
+  matcher: [
+    '/',
+    '/login/:path*',
+    '/register/:path*',
+    '/stock/:path*',
+    '/report/:path*',
+    '/aboutus/:path*',
+    '/shop/:path*',
+  ],
 };

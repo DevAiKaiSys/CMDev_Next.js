@@ -12,7 +12,7 @@ const nextConfig = {
         hostname: 'localhost',
       },
     ],
-    // minimumCacheTTL: 0,
+    minimumCacheTTL: 0,
   },
 };
 

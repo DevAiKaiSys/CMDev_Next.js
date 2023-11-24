@@ -1,6 +1,5 @@
 'use client';
 
-import * as React from 'react';
 import {
   DataGrid,
   GridColDef,
@@ -12,7 +11,7 @@ import {
 import { useSelector } from 'react-redux';
 import { getProducts, productSelector } from '@/store/slices/productSlice';
 import { useAppDispatch } from '@/store/store';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { productImageURL } from '@/utils/commonUtil';
 import Zoom from 'react-medium-image-zoom';
@@ -20,6 +19,11 @@ import 'react-medium-image-zoom/dist/styles.css';
 import {
   Box,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
   Fab,
   Grid,
   IconButton,
@@ -156,6 +160,7 @@ export default function Stock() {
   const productReducer = useSelector(productSelector);
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [open, setOpen] = useState(false);
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 90 },
@@ -226,10 +231,11 @@ export default function Stock() {
           <IconButton
             aria-label="delete"
             size="large"
-            // onClick={() => {
-            //   setSelectedProduct(row);
-            //   setOpenDialog(true);
-            // }}
+            onClick={() => {
+              // setSelectedProduct(row);
+              // setOpenDialog(true);
+              setOpen(true);
+            }}
           >
             <Delete fontSize="inherit" />
           </IconButton>
@@ -271,6 +277,37 @@ export default function Stock() {
       </Link>
     </GridToolbarContainer>
   );
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const showDemoDialog = () => {
+    return (
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Use Google's location service?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Let Google help apps determine location. This means sending
+            anonymous location data to Google, even when no apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
+  };
 
   return (
     <Box sx={{ height: 400, width: '100%' }}>
@@ -333,6 +370,8 @@ export default function Stock() {
           toolbar: CustomToolbar,
         }}
       />
+
+      {showDemoDialog()}
     </Box>
   );
 }

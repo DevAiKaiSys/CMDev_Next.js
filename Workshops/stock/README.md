@@ -70,7 +70,7 @@ npm install axios
 npm install --save react-medium-image-zoom
 ```
 
-## fix error image
+## fix warning in production Image Optimization
 
 For production Image Optimization with Next.js, the optional 'sharp' package is strongly recommended. Run 'npm i sharp', and Next.js will use it automatically for Image Optimization.
 Read more: https://nextjs.org/docs/messages/sharp-missing-in-production

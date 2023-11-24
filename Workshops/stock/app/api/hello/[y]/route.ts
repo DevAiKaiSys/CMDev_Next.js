@@ -5,13 +5,16 @@
 // export const runtime = 'nodejs'
 // export const preferredRegion = 'auto'
 
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET(context: {
-  params: {
-    y: string;
-  };
-}): Promise<any> {
+export async function GET(
+  request: NextRequest,
+  context: {
+    params: {
+      y: string;
+    };
+  }
+): Promise<any> {
   const route = context.params.y;
 
   return NextResponse.json({ route });

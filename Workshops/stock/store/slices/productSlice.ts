@@ -44,7 +44,7 @@ export const deleteProduct = createAsyncThunk(
   async (id: string) => {
     await serverService.deleteProduct(id);
     // state.dispatch(getProducts());
-    store.dispatch(getProducts());
+    // store.dispatch(getProducts());
   }
 );
 

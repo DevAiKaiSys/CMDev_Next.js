@@ -287,15 +287,15 @@ export default function Stock() {
 
   const handleDeleteConfirm = async () => {
     if (selectedProduct) {
-      dispatch(deleteProduct(String(selectedProduct.id)));
-      setOpenDialog(false);
-      // const result = await dispatch(deleteProduct(String(selectedProduct.id)));
-      // if (result.meta.requestStatus == 'fulfilled') {
-      //   dispatch(getProducts());
-      //   setOpenDialog(false);
-      // } else {
-      //   alert('Failed to delete');
-      // }
+      // dispatch(deleteProduct(String(selectedProduct.id)));
+      // setOpenDialog(false);
+      const result = await dispatch(deleteProduct(String(selectedProduct.id)));
+      if (result.meta.requestStatus == 'fulfilled') {
+        dispatch(getProducts());
+        setOpenDialog(false);
+      } else {
+        alert('Failed to delete');
+      }
     }
   };
 

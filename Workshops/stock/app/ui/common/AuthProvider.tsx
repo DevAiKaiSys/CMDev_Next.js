@@ -27,9 +27,11 @@ export default function AuthProvider({ children }: Props) {
   // };
 
   useEffect(() => {
-    return () => {
-      store.dispatch(getSession());
-    };
+    store.dispatch(getSession());
+    // return () => {
+    //   // production error?
+    //   store.dispatch(getSession());
+    // };
   }, []);
 
   // const path = usePathname();
